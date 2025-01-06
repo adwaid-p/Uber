@@ -49,7 +49,7 @@ module.exports.loginUser = async (req, res, next) => {
   const isMatch = await user.comparePassword(password);
 
   if (!isMatch) {
-    return res.status(4011).json({ message: "Invalid username or password" });
+    return res.status(401).json({ message: "Invalid username or password" });
   }
   const token = user.generateAuthToken();
 
@@ -68,7 +68,7 @@ module.exports.getUserProfile = async(req, res, next) => {
 
 module.exports.logoutUser = async(req,res,next) => {
   res.clearCookie('token')
-  const token = req.cookies.token || req.headers.authization.split(' ')[1];
+  const token = req.cookies.token || req.headers.authorization.split(' ')[1];
   await blacklistTokenModel.create({token})
   res.status(200).json({message: 'Logged out'})
 }
