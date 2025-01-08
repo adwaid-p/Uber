@@ -8,7 +8,7 @@ const vehiclePanel = (props) => {
             props.setVehiclePanelOpen(false)
           }}
           className='text-3xl text-center'><i className="ri-arrow-down-wide-line text-gray-300"></i></h5>
-        <h3 className='text-2xl font-semibold mb-5'>Choose a Vehicle</h3>
+        <h3 className='text-2xl font-semibold mb-5 text-center border-b-[1.6px] pb-[5px]'>Choose a Vehicle</h3>
 
         <div onClick={()=>{
           props.setConfirmRidePanel(true);
