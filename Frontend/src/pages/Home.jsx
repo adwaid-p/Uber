@@ -102,7 +102,7 @@ const Home = () => {
         transform: 'translateY(100%)'
       })
     }
-  })
+  },[waitingForDriver])
 
 
   return (
@@ -166,15 +166,15 @@ const Home = () => {
         <VehiclePanel vehiclePanelOpen={vehiclePanelOpen} setConfirmRidePanel={setConfirmRidePanel} setVehiclePanelOpen={setVehiclePanelOpen} />
       </div>
 
-      <div ref={confirmRidePanelReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl'>
+      <div ref={confirmRidePanelReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl translate-y-full'>
         <ConfirmRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} />
       </div>
 
-      <div ref={vehicleFoundReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl'>
+      <div ref={vehicleFoundReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl translate-y-full'>
         <LookingForDriver setVehicleFound={setVehicleFound} />
       </div>
 
-      <div ref={waitingForDriverReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl'>
+      <div ref={waitingForDriverReff} className='fixed w-full z-10 bottom-0 px-3 py-3 pb-8 bg-white rounded-t-xl translate-y-full'>
         <WaitingForDriver setWaitingForDriver={setWaitingForDriver} />
       </div>
     </div>
