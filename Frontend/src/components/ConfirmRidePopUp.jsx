@@ -59,7 +59,6 @@ const ConfirmRidePopUp = (props) => {
                     }} className='flex flex-col gap-3'>
                         <input value={otp} onChange={(e)=>{setOtp(e.target.value)}} type="text" placeholder='Enter OTP' className='bg-[#eee] border-2 border-gray-500 px-6 py-3 text-lg rounded-lg w-full mt-5 text-center font-semibold' />
                         <div className='flex gap-5 mt-2'>
-                        <Link to={'/captain-riding'} className='w-full flex justify-center bg-black text-white font-semibold p-3 rounded'>Confirm</Link >
                         <button onClick={
                             () => {
                                 props.setConfirmRidePopupPanel(false)
@@ -67,7 +66,8 @@ const ConfirmRidePopUp = (props) => {
                         }
                             className='w-full border-2 border-black text-black font-semibold p-3 rounded'>
                             Cancel
-                        </button>                            
+                        </button>                        
+                        <Link to={'/captain-riding'} className='w-full flex justify-center bg-black text-white font-semibold p-3 rounded'>Confirm</Link >    
                         </div>
 
                     </form>
