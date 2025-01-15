@@ -57,7 +57,7 @@ const ConfirmRidePopUp = (props) => {
                     <form onSubmit={(e) => {
                         submitHandler(e)
                     }} className='flex flex-col gap-3'>
-                        <input value={otp} onChange={(e)=>{setOtp(e.target.value)}} type="text" placeholder='Enter OTP' className='bg-[#eee] border-2 border-gray-500 px-6 py-3 text-lg rounded-lg w-full mt-5 text-center font-semibold' />
+                        <input value={otp} onChange={(e)=>{setOtp(e.target.value)}} type="text" placeholder='Enter OTP' className='bg-[#eee] border-2 border-gray-500 px-6 py-3 text-lg rounded-lg w-full mt-5 text-center font-semibold tracking-[5px] placeholder:tracking-normal' />
                         <div className='flex gap-5 mt-2'>
                         <button onClick={
                             () => {
