@@ -34,6 +34,7 @@ module.exports.getDistaceTime = async(origin, destination)=>{
 
     try {
         const response = await axios.get(url);
+        // console.log('The response is ',response.data.rows[0].elements[0])
         if(response.data.status === 'OK'){
             if(response.data.rows[0].elements[0]==='ZERO_RESULTS'){
                 throw new Error('No route found')
@@ -67,6 +68,7 @@ module.exports.getAutoCompleteSuggestions = async(input)=>{
 }
 
 module.exports.getCaptainsInTheRadius = async(itd,lng,radius)=>{
+    // console.log('The coordinates are ',itd,lng,radius)
     const captains = await captainModel.find({
         location:{
             $geoWithin: {
@@ -74,4 +76,6 @@ module.exports.getCaptainsInTheRadius = async(itd,lng,radius)=>{
             }
         }
     })
+    // console.log('Captains in radius are ', captains)
+    return captains;
 }

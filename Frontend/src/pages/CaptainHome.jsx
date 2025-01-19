@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import CaptainDetails from '../components/CaptainDetails'
 import RidePopUp from '../components/RidePopUp'
@@ -11,8 +12,9 @@ import { SocketContext } from '../context/SocketContext'
 
 const CaptainHome = () => {
 
-  const [ridePopupPanel, setRidePopupPanel] = useState(true)
+  const [ridePopupPanel, setRidePopupPanel] = useState(false)
   const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false)
+  const [ride, setRide] = useState(null)
 
   const ridePopupPanelRef = useRef(null)
   const confirmRidePopupPanelRef = useRef(null)
@@ -51,9 +53,25 @@ const CaptainHome = () => {
   }, [])
 
   socket.on('new-ride',(data)=>{
-    console.log(data)
+    // console.log('The new ride is ',data)
+    setRide(data)
+    setRidePopupPanel(true)
   })
 
+async function confirmRide() {
+  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/confirm`, {
+    rideId: ride._id,
+    captainId:captain._id
+  },{
+    headers:{
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+
+        setRidePopupPanel(false)
+        setConfirmRidePopupPanel(true)
+}
+  
   useGSAP(() => {
     if (ridePopupPanel) {
       gsap.to(ridePopupPanelRef.current, {
@@ -95,7 +113,12 @@ const CaptainHome = () => {
         <CaptainDetails />
       </div>
       <div ref={ridePopupPanelRef} className='fixed w-full z-10 bottom-0 translate-y-full px-3 pt-5 pb-8 bg-white rounded-t-xl'>
-        <RidePopUp setRidePopupPanel={setRidePopupPanel} setConfirmRidePopupPanel={setConfirmRidePopupPanel} />
+        <RidePopUp
+        ride={ride}
+        setRidePopupPanel={setRidePopupPanel} 
+        setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+        confirmRide={confirmRide}
+         />
       </div>
 
       <div ref={confirmRidePopupPanelRef} className='fixed w-full h-screen z-10 bottom-0 translate-y-full px-3 pt-5 pb-8 bg-white rounded-t-xl'>

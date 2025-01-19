@@ -12,6 +12,7 @@ const rideSchema = new mongoose.Schema({
     },
     pickup:{
         type: String,
+        
         required:true
     },
     destination:{
